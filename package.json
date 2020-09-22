@@ -1,0 +1,21 @@
+{
+    "name": "accessible-system",
+    "version": "1.0.0",
+    "description": "A React-Native accessibility helper for styled-components",
+    "license": "MIT",
+    "repository": "FrancisLeigh/accessible-system",
+    "main": "index.js",
+    "keywords": [
+        "accessibility",
+        "accessible",
+        "accessible-system",
+        "styled-components",
+        "styled-system",
+        "react-native",
+        "react",
+        "react js",
+        "npm",
+        "package",
+        "francisleigh"
+    ]
+}
