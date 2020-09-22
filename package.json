@@ -23,7 +23,7 @@
     "francisleigh"
   ],
   "scripts": {
-    "prepublish": "tsc"
+    "build": "tsc"
   },
   "bugs": {
     "url": "https://github.com/FrancisLeigh/accessible-system/issues"
