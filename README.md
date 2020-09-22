@@ -1,14 +1,15 @@
 # francisleigh/accessible-system
+A React-Native accessibility helper for styled-components
 ## Usage
 ```javascript
 import A11y from "accessible-system";
 
-const Box = styled.div.attrs(A11y)`
+const Box = styled.View.attrs(A11y)`
   height: 100px;
   width: 100px;
 `
 
-const BoxMultiAttrs = styled.div.attrs((props) => ({
+const BoxMultiAttrs = styled.View.attrs((props) => ({
   ...A11y(props),
   ...OtherAttrLib(props),
   style: { borderBottom: 2 }
