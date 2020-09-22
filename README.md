@@ -1,7 +1,7 @@
 # francisleigh/accessible-system
 ## Usage
 ```javascript
-import A11y from "@a11y-system";
+import A11y from "accessible-system";
 
 const Box = styled.div.attrs(A11y)`
   height: 100px;
@@ -21,7 +21,7 @@ const BoxMultiAttrs = styled.div.attrs((props) => ({
 ```javascript
 import Box from "@components/Box";
 
-<Box 
+<Box
   a11y={boolean}
   a11yLabel={string}
   a11yHint={string}
