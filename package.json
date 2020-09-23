@@ -1,6 +1,6 @@
 {
   "name": "accessible-system",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A React-Native accessibility helper for styled-components",
   "license": "MIT",
   "repository": {
@@ -24,9 +24,9 @@
   ],
   "scripts": {
     "build": "tsc",
-    "prepare" : "npm run build",
-    "version" : "git add -A src",
-    "postversion" : "git push && git push --tags"
+    "prepare": "npm run build",
+    "version": "git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "bugs": {
     "url": "https://github.com/FrancisLeigh/accessible-system/issues"
@@ -36,5 +36,7 @@
   "devDependencies": {
     "typescript": "^2.7.2"
   },
-  "files": ["lib/**/*"]
+  "files": [
+    "lib/**/*"
+  ]
 }
