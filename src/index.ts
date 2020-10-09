@@ -123,22 +123,22 @@ interface A11yAttrsProps {
 };
 
 const A11yDefaultProps = {
-  a11y: true,
+  a11y: false,
   a11yLabel: null,
-  a11yHint: '',
-  a11yRole: '',
+  a11yHint: undefined,
+  a11yRole: undefined,
   a11yStates: [],
   a11yHideChildren: false,
   a11yLiveRegion: false,
-  a11yAssertive: void 0,
+  a11yAssertive: undefined,
   a11yNoInvert: false,
-  a11yValue: {},
+  a11yValue: undefined,
   a11yIsModal: false,
-  a11yOnEscape: () => {},
-  a11yOnTap: () => {},
-  a11yOnMagicTap: () => {},
+  a11yOnEscape: undefined,
+  a11yOnTap: undefined,
+  a11yOnMagicTap: undefined,
   a11yActions: [],
-  a11yOnAction: () => {},
+  a11yOnAction: undefined,
   disabled: false,
   busy: false,
 }
@@ -174,7 +174,7 @@ export default function A11y(_props : A11yAttrsProps) {
   if (props.a11yOnEscape) shakenObj.onAccessibilityEscape = props.a11yOnEscape;
   if (props.a11yOnTap) shakenObj.onAccessibilityTap = props.a11yOnTap;
   if (props.a11yOnMagicTap) shakenObj.onMagicTap = props.a11yOnMagicTap;
-  if (props.a11yActions) shakenObj.accessibilityActions = props.a11yActions;
+  if (props.a11yActions.length) shakenObj.accessibilityActions = props.a11yActions;
   if (props.a11yOnAction) shakenObj.onAccessibilityAction = props.a11yOnAction;
 
   return shakenObj;
