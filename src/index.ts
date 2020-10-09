@@ -2,6 +2,24 @@ interface A11yAction {
   name: string;
   label: string;
 }
+interface A11yReturned {
+  accessible?: boolean;
+  accessibilityLabel?: string;
+  accessibilityHint?: string;
+  accessibilityRole: string|'none';
+  accessibilityStates?: (string|false)[];
+  accessibilityElementsHidden?: boolean;
+  importantForAccessibility: string;
+  accessibilityLiveRegion: string;
+  accessibilityIgnoresInvertColors?: boolean;
+  accessibilityValue?: object;
+  accessibilityViewIsModal?: boolean;
+  onAccessibilityEscape?: Function;
+  onAccessibilityTap?: Function;
+  onMagicTap?: Function;
+  accessibilityActions?: A11yAction[];
+  onAccessibilityAction?: Function;
+}
 interface A11yAttrsProps {
     /**
      * Defaults to true
@@ -101,6 +119,10 @@ interface A11yAttrsProps {
      * If false, will add the 'disabled' state to the list of @a11yStates
      */
     enabled?: boolean;
+    /**
+     * If true, will add the 'busy' state to the list of @a11yStates.
+     */
+    busy?: boolean;
 
     [x: string]: any;
 };
@@ -124,11 +146,15 @@ const A11yDefaultProps = {
   a11yOnAction: () => {},
   disabled: false,
   enabled: true,
+  busy: false,
 }
 
 export default function A11y(_props : A11yAttrsProps) {
   const props = { ...A11yDefaultProps, ..._props };
-  const states = [(props.disabled || props.enabled === false) && 'disabled']
+  const states = [
+    (props.disabled || props.enabled === false) && 'disabled',
+    props.busy && 'busy',
+  ]
     .concat(props.a11yStates)
     .filter(Boolean);
   const android_hide_descendants = props.a11yHideChildren ? 'no-hide-descendants' : 'yes';
@@ -138,22 +164,24 @@ export default function A11y(_props : A11yAttrsProps) {
     else return 'none';
   };
 
-  return {
-    accessible: props.a11y,
-    accessibilityLabel: props.a11yLabel,
-    accessibilityHint: props.a11yHint,
+  const shakenObj: A11yReturned = {
     accessibilityRole: props.a11yRole || 'none',
-    accessibilityStates: states,
-    accessibilityElementsHidden: props.a11yHideChildren,
-    importantForAccessibility: android_hide_descendants,
     accessibilityLiveRegion: android_live_region(),
-    accessibilityIgnoresInvertColors: props.a11yNoInvert,
-    accessibilityValue: props.a11yValue,
-    accessibilityViewIsModal: props.a11yIsModal,
-    onAccessibilityEscape: props.a11yOnEscape,
-    onAccessibilityTap: props.a11yOnTap,
-    onMagicTap: props.a11yOnMagicTap,
-    accessibilityActions: props.a11yActions,
-    onAccessibilityAction: props.a11yOnAction,
+    importantForAccessibility: android_hide_descendants,
   };
+  if (props.a11y) shakenObj.accessible = props.a11y;
+  if (props.a11yLabel) shakenObj.accessibilityLabel = props.a11yLabel;
+  if (props.a11yHint) shakenObj.accessibilityHint = props.a11yHint;
+  if (states.length) shakenObj.accessibilityStates = states;
+  if (props.a11yHideChildren) shakenObj.accessibilityElementsHidden = props.a11yHideChildren;
+  if (props.a11yNoInvert) shakenObj.accessibilityIgnoresInvertColors = props.a11yNoInvert;
+  if (props.a11yValue) shakenObj.accessibilityValue = props.a11yValue;
+  if (props.a11yIsModal) shakenObj.accessibilityViewIsModal = props.a11yIsModal;
+  if (props.a11yOnEscape) shakenObj.onAccessibilityEscape = props.a11yOnEscape;
+  if (props.a11yOnTap) shakenObj.onAccessibilityTap = props.a11yOnTap;
+  if (props.a11yOnMagicTap) shakenObj.onMagicTap = props.a11yOnMagicTap;
+  if (props.a11yActions) shakenObj.accessibilityActions = props.a11yActions;
+  if (props.a11yOnAction) shakenObj.onAccessibilityAction = props.a11yOnAction;
+
+  return shakenObj;
 }
