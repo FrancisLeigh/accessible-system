@@ -7,7 +7,7 @@ interface A11yReturned {
   accessibilityLabel?: string;
   accessibilityHint?: string;
   accessibilityRole: string|'none';
-  accessibilityStates?: (string|false)[];
+  accessibilityStates?: any[];
   accessibilityElementsHidden?: boolean;
   importantForAccessibility: string;
   accessibilityLiveRegion: string;
@@ -45,7 +45,7 @@ interface A11yAttrsProps {
      * Describes the current state of the component
      * https://reactnative.dev/docs/accessibility#accessibilitystate
      */
-    a11yStates: (string | false)[];
+    a11yStates: any[];
     /**
      * Value indicating whether the children of the component are hidden to the screen reader
      * https://reactnative.dev/docs/accessibility#accessibilityelementshidden
