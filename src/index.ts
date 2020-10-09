@@ -115,11 +115,6 @@ interface A11yAttrsProps {
      */
     disabled?: boolean;
     /**
-     * The same as @disabled but handled to allow usage with Touchable components.
-     * If false, will add the 'disabled' state to the list of @a11yStates
-     */
-    enabled?: boolean;
-    /**
      * If true, will add the 'busy' state to the list of @a11yStates.
      */
     busy?: boolean;
@@ -145,14 +140,13 @@ const A11yDefaultProps = {
   a11yActions: [],
   a11yOnAction: () => {},
   disabled: false,
-  enabled: true,
   busy: false,
 }
 
 export default function A11y(_props : A11yAttrsProps) {
   const props = { ...A11yDefaultProps, ..._props };
   const states = [
-    (props.disabled || props.enabled === false) && 'disabled',
+    (props.disabled) && 'disabled',
     props.busy && 'busy',
   ]
     .concat(props.a11yStates)
