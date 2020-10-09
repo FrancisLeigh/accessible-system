@@ -40,6 +40,7 @@ import Box from "@components/Box";
   a11yActions={A11yAction[]}
   a11yOnAction={Function}
   disabled={boolean}
+  busy={boolean}
 />
 ```
 
