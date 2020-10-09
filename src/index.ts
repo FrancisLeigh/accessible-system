@@ -6,11 +6,11 @@ interface A11yReturned {
   accessible?: boolean;
   accessibilityLabel?: string;
   accessibilityHint?: string;
-  accessibilityRole: string|'none';
+  accessibilityRole?: string|'none';
   accessibilityStates?: any[];
   accessibilityElementsHidden?: boolean;
-  importantForAccessibility: string;
-  accessibilityLiveRegion: string;
+  importantForAccessibility?: string;
+  accessibilityLiveRegion?: string;
   accessibilityIgnoresInvertColors?: boolean;
   accessibilityValue?: object;
   accessibilityViewIsModal?: boolean;
@@ -158,24 +158,27 @@ export default function A11y(_props : A11yAttrsProps) {
     else return 'none';
   };
 
-  const shakenObj: A11yReturned = {
-    accessibilityRole: props.a11yRole || 'none',
-    accessibilityLiveRegion: android_live_region(),
-    importantForAccessibility: android_hide_descendants,
-  };
-  if (props.a11y) shakenObj.accessible = props.a11y;
-  if (props.a11yLabel) shakenObj.accessibilityLabel = props.a11yLabel;
-  if (props.a11yHint) shakenObj.accessibilityHint = props.a11yHint;
-  if (states.length) shakenObj.accessibilityStates = states;
-  if (props.a11yHideChildren) shakenObj.accessibilityElementsHidden = props.a11yHideChildren;
-  if (props.a11yNoInvert) shakenObj.accessibilityIgnoresInvertColors = props.a11yNoInvert;
-  if (props.a11yValue) shakenObj.accessibilityValue = props.a11yValue;
-  if (props.a11yIsModal) shakenObj.accessibilityViewIsModal = props.a11yIsModal;
-  if (props.a11yOnEscape) shakenObj.onAccessibilityEscape = props.a11yOnEscape;
-  if (props.a11yOnTap) shakenObj.onAccessibilityTap = props.a11yOnTap;
-  if (props.a11yOnMagicTap) shakenObj.onMagicTap = props.a11yOnMagicTap;
-  if (props.a11yActions.length) shakenObj.accessibilityActions = props.a11yActions;
-  if (props.a11yOnAction) shakenObj.onAccessibilityAction = props.a11yOnAction;
+  const shakenObj: A11yReturned = {};
+  if (props.a11y) {
+    shakenObj.accessible = props.a11y;
+    shakenObj.accessibilityRole = props.a11yRole || 'none';
+    shakenObj.accessibilityLiveRegion = android_live_region();
+    shakenObj.importantForAccessibility = android_hide_descendants;
+
+
+    if (props.a11yLabel) shakenObj.accessibilityLabel = props.a11yLabel;
+    if (props.a11yHint) shakenObj.accessibilityHint = props.a11yHint;
+    if (states.length) shakenObj.accessibilityStates = states;
+    if (props.a11yHideChildren) shakenObj.accessibilityElementsHidden = props.a11yHideChildren;
+    if (props.a11yNoInvert) shakenObj.accessibilityIgnoresInvertColors = props.a11yNoInvert;
+    if (props.a11yValue) shakenObj.accessibilityValue = props.a11yValue;
+    if (props.a11yIsModal) shakenObj.accessibilityViewIsModal = props.a11yIsModal;
+    if (props.a11yOnEscape) shakenObj.onAccessibilityEscape = props.a11yOnEscape;
+    if (props.a11yOnTap) shakenObj.onAccessibilityTap = props.a11yOnTap;
+    if (props.a11yOnMagicTap) shakenObj.onMagicTap = props.a11yOnMagicTap;
+    if (props.a11yActions.length) shakenObj.accessibilityActions = props.a11yActions;
+    if (props.a11yOnAction) shakenObj.onAccessibilityAction = props.a11yOnAction;
+  }
 
   return shakenObj;
 }
